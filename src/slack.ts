@@ -1,17 +1,17 @@
 import * as github from '@actions/github';
 import * as core from '@actions/core';
-import { Status } from './utils';
-import { SectionBlock, MessageAttachment, MrkdwnElement } from '@slack/types';
+import {Status} from './utils';
 import {
-  IncomingWebhook, IncomingWebhookSendArguments,
+  IncomingWebhook,
+  IncomingWebhookSendArguments,
   IncomingWebhookResult
 } from '@slack/webhook';
 
 export class Slack extends IncomingWebhook {
   // 0: failure, 1: success, 2: cancel
   static readonly color: string[] = ['#cb2431', '#2cbe4e', '#ffc107'];
-  static readonly mark: string[] = [':x:', ':white_check_mark:', ':warning:']
-  static readonly msg: string[] = ['Failure', 'Success', 'Cancel']
+  static readonly mark: string[] = [':x:', ':white_check_mark:', ':warning:'];
+  static readonly msg: string[] = ['Failure', 'Success', 'Cancel'];
 
   constructor(
     url: string,
@@ -23,59 +23,66 @@ export class Slack extends IncomingWebhook {
   }
 
   /**
-   * Get slack blocks UI
+   * Get mattermost fields
    */
-  protected get blocks(): SectionBlock {
+  protected get fields(): Object {
     const context = github.context;
-    const { sha, eventName, workflow, ref } = context;
-    const { owner, repo } = context.repo;
+    const {sha, eventName, workflow, ref} = context;
+    const {owner, repo} = context.repo;
     const repo_url: string = `https://github.com/${owner}/${repo}`;
     const action_url: string = `${repo_url}/commit/${sha}/checks`;
 
-    const blocks: SectionBlock = {
-      type: 'section',
-      fields: [
-        { type: 'mrkdwn', text: `*repository*\n<${repo_url}|${owner}/${repo}>` },
-        { type: 'mrkdwn', text: `*ref*\n${ref}` },
-        { type: 'mrkdwn', text: `*event name*\n${eventName}` },
-        { type: 'mrkdwn', text: `*workflow*\n<${action_url}|${workflow}>` },
-      ]
-    }
+    const fields: Array<Object> = [
+      {
+        short: true,
+        title: `repository`,
+        value: `<${repo_url}|${owner}/${repo}>`
+      },
+      {short: true, title: `ref`, value: `${ref}`},
+      {short: true, title: `event name`, value: `${eventName}`},
+      {short: true, title: `workflow`, value: `${action_url}|${workflow}>`}
+    ];
 
-    return blocks;
+    return fields;
   }
 
   /**
-   * Generate slack payload
+   * Generate payload
    */
-  protected generatePayload(status: Status, msg: string): IncomingWebhookSendArguments {
+  protected generatePayload(
+    status: Status,
+    msg: string
+  ): IncomingWebhookSendArguments {
     const text: string = `${Slack.mark[status]} GitHub Actions ${Slack.msg[status]}`;
-    const text_for_blocks: MrkdwnElement = { type: 'mrkdwn', text: msg };
-    const blocks: SectionBlock = { ...this.blocks, text: text_for_blocks };
-    const attachments: MessageAttachment = {
+    const attachments: Object = {
       color: Slack.color[status],
-      blocks: [blocks]
-    }
+      fields: this.fields
+    };
     const payload: IncomingWebhookSendArguments = {
       text,
-      attachments: [attachments],
-      unfurl_links: true
-    }
+      attachments: [attachments]
+    };
 
-    core.debug(`Generated payload for slack: ${JSON.stringify(payload)}`);
+    core.debug(`Generated payload for Mattermost: ${JSON.stringify(payload)}`);
 
     return payload;
   }
 
   /**
-   * Notify information about github actions to Slack
+   * Notify information about github actions to Mattermost
    */
-  public async notify(status: Status, msg: string): Promise<IncomingWebhookResult> {
+  public async notify(
+    status: Status,
+    msg: string
+  ): Promise<IncomingWebhookResult> {
     try {
-      const payload: IncomingWebhookSendArguments = this.generatePayload(status, msg);
+      const payload: IncomingWebhookSendArguments = this.generatePayload(
+        status,
+        msg
+      );
       const result = await this.send(payload);
 
-      core.debug('Sent message to Slack');
+      core.debug('Sent message to Mattermost');
 
       return result;
     } catch (err) {

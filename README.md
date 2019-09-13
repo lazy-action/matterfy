@@ -1,11 +1,11 @@
-# Slatify
+# Matify
 
-![](https://github.com/homoluctus/slatify/workflows/TS%20Lint%20Check/badge.svg)
-![](https://github.com/homoluctus/slatify/workflows/Check%20if%20GitHub%20Actions%20works%20properly/badge.svg)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/homoluctus/slatify?color=brightgreen)
-![GitHub](https://img.shields.io/github/license/homoluctus/slatify?color=brightgreen)
+![](https://github.com/tferreira/matify/workflows/TS%20Lint%20Check/badge.svg)
+![](https://github.com/tferreira/matify/workflows/Check%20if%20GitHub%20Actions%20works%20properly/badge.svg)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/tferreira/matify?color=brightgreen)
+![GitHub](https://img.shields.io/github/license/tferreira/matify?color=brightgreen)
 
-This is Slack Notification for GitHub Actions.<br>
+This is Mattermost Notification for GitHub Actions.<br>
 Generated from [actions/javascript-template](https://github.com/actions/javascript-template).
 
 # Feature
@@ -28,8 +28,8 @@ Please refer `action.yml` for more details.
 
 ## Example
 ```..github/workflows/main.yml
-- name: Slack Notification
-  uses: homoluctus/slatify@master
+- name: Mattermost Notification
+  uses: tferreira/matify@master
   if: always()
   with:
     type: ${{ job.status }}
@@ -57,4 +57,4 @@ Please refer `action.yml` for more details.
 
 # LICENSE
 
-[The MIT License (MIT)](https://github.com/homoluctus/slatify/blob/master/LICENSE)
+[The MIT License (MIT)](https://github.com/tferreira/matify/blob/master/LICENSE)

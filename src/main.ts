@@ -1,11 +1,11 @@
 import * as core from '@actions/core';
-import { Slack } from './slack';
-import { Status, getStatus } from './utils';
+import {Slack} from './slack';
+import {Status, getStatus} from './utils';
 
 async function run() {
   try {
-    const type: string = core.getInput('type', { required: true });
-    const job_name: string = core.getInput('job_name', { required: true });
+    const type: string = core.getInput('type', {required: true});
+    const job_name: string = core.getInput('job_name', {required: true});
     const username: string = core.getInput('username') || 'Github Actions';
     const icon_emoji: string = core.getInput('icon_emoji') || 'github';
     const channel: string = core.getInput('channel');
@@ -24,9 +24,8 @@ async function run() {
     const result = await slack.notify(status, job_name);
 
     core.debug(`Response from Slack: ${JSON.stringify(result)}`);
-
   } catch (err) {
-    console.log(err)
+    console.log(err);
     core.setFailed(err.message);
   }
 }
