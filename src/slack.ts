@@ -40,7 +40,7 @@ export class Slack extends IncomingWebhook {
       },
       {short: true, title: `ref`, value: `${ref}`},
       {short: true, title: `event name`, value: `${eventName}`},
-      {short: true, title: `workflow`, value: `${action_url}|${workflow}>`}
+      {short: true, title: `workflow`, value: `<${action_url}|${workflow}>`}
     ];
 
     return fields;
