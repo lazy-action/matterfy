@@ -56,6 +56,7 @@ export class Slack extends IncomingWebhook {
     const text: string = `${Slack.mark[status]} GitHub Actions ${Slack.msg[status]}`;
     const attachments: Object = {
       color: Slack.color[status],
+      title: msg,
       fields: this.fields
     };
     const payload: IncomingWebhookSendArguments = {
