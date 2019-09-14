@@ -6,7 +6,7 @@
 ![GitHub](https://img.shields.io/github/license/tferreira/matify?color=brightgreen)
 
 This is Mattermost Notification for GitHub Actions.<br>
-Generated from [actions/javascript-template](https://github.com/actions/javascript-template).
+Forked from [homoluctus/slatify](https://github.com/homoluctus/slatify). Thanks a lot for your awesome work!
 
 # Feature
 - Notify the result of GitHub Actions
@@ -19,26 +19,26 @@ You can customize the following parameters:
 |:--:|:--:|:--|
 |type|required|The result of GitHub Actions job<br>This parameter value must contain `success`, `fail` or `cancel`<br>We recommend using ${{ job.status }}|
 |job_name|required|Means slack notification title|
-|icon_emoji|optional|Slack icon<br>default: github|
-|username|optional|Slack username<br>default: Github Actions|
-|channel|optional|Slack channel name<br>When you does not specify, we use the channel that is set in Slack Incoming Webhook|
-|url|optional|Slack Incoming Webhooks URL<br>Please specify this key or SLACK_WEBHOOK environment variable<br>※SLACK_WEBHOOK will be deprecated|
+|channel|required|Mattermost channel name|
+|icon_emoji|optional|Mattermost icon<br>default: github|
+|username|optional|Mattermost username<br>default: Github Actions|
+|url|optional|Mattermost Incoming Webhooks URL<br>Please specify this key or SLACK_WEBHOOK environment variable<br>※SLACK_WEBHOOK will be deprecated|
 
 Please refer `action.yml` for more details.
 
 ## Example
 ```..github/workflows/main.yml
 - name: Mattermost Notification
-  uses: tferreira/matify@master
+  uses: tferreira/matify@releases/v1
   if: always()
   with:
     type: ${{ job.status }}
     job_name: '*Lint Check*'
-    channel: '#random'
+    channel: 'random'
     url: ${{ secrets.SLACK_WEBHOOK }}
 ```
 
-# Slack UI Example
+# Display Example (originally took using Slack UI)
 ## Success Case
 
 <img src="./images/github_actions_success.png" alt="github actions success pattern">
