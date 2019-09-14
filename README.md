@@ -1,9 +1,9 @@
-# Matify
+# Matterfy
 
-![](https://github.com/tferreira/matify/workflows/TS%20Lint%20Check/badge.svg)
-![](https://github.com/tferreira/matify/workflows/Check%20if%20GitHub%20Actions%20works%20properly/badge.svg)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/tferreira/matify?color=brightgreen)
-![GitHub](https://img.shields.io/github/license/tferreira/matify?color=brightgreen)
+![](https://github.com/tferreira/matterfy/workflows/TS%20Lint%20Check/badge.svg)
+![](https://github.com/tferreira/matterfy/workflows/Check%20if%20GitHub%20Actions%20works%20properly/badge.svg)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/tferreira/matterfy?color=brightgreen)
+![GitHub](https://img.shields.io/github/license/tferreira/matterfy?color=brightgreen)
 
 This is Mattermost Notification for GitHub Actions.<br>
 Forked from [homoluctus/slatify](https://github.com/homoluctus/slatify). Thanks a lot for your awesome work!
@@ -29,7 +29,7 @@ Please refer `action.yml` for more details.
 ## Example
 ```..github/workflows/main.yml
 - name: Mattermost Notification
-  uses: tferreira/matify@releases/v1
+  uses: tferreira/matterfy@releases/v1
   if: always()
   with:
     type: ${{ job.status }}
@@ -57,4 +57,4 @@ Please refer `action.yml` for more details.
 
 # LICENSE
 
-[The MIT License (MIT)](https://github.com/tferreira/matify/blob/master/LICENSE)
+[The MIT License (MIT)](https://github.com/tferreira/matterfy/blob/master/LICENSE)

@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Slack Notification
-        uses: tferreira/slatify@releases/v1
+        uses: tferreira/matterfy@releases/v1
         if: always()
         with:
           type: ${{ job.status }}
