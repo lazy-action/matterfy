@@ -1,6 +1,6 @@
-name: 'Slatify'
-description: 'Slack Notification for Github Actions'
-author: 'homoluctus'
+name: 'Matify'
+description: 'Mattermost Notification for Github Actions'
+author: 'tferreira'
 inputs:
   type:
     description: 'job status (success or failure)'
@@ -9,18 +9,18 @@ inputs:
     description: 'job name of workflow (format: markdown)'
     required: true
   username:
-    description: 'slack username'
+    description: 'mattermost username'
     required: false
     default: 'Github Actions'
   icon_emoji:
-    description: 'slack icon emoji'
+    description: 'mattermost icon emoji'
     required: false
     default: 'github'
   channel:
-    description: 'slack channel'
+    description: 'mattermost channel'
     required: false
   url:
-    description: 'slack incoming webhook url'
+    description: 'mattermost incoming webhook url'
     required: false
 runs:
   using: 'node12'
