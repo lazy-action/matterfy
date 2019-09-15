@@ -38,7 +38,7 @@ Please refer `action.yml` for more details.
     url: ${{ secrets.SLACK_WEBHOOK }}
 ```
 
-# Display Example (originally took using Slack UI)
+# UI Examples 
 ## Success Case
 
 <img src="./images/github_actions_success.png" alt="github actions success pattern">
@@ -50,10 +50,6 @@ Please refer `action.yml` for more details.
 ## Cancel Case
 
 <img src="./images/github_actions_cancel.png" alt="github actions cancel pattern">
-
-## Preview
-
-<img src="./images/preview.png" alt="Notification Preview">
 
 # LICENSE
 
