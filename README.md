@@ -20,7 +20,7 @@ You can customize the following parameters:
 |type|required|The result of GitHub Actions job<br>This parameter value must contain `success`, `fail` or `cancel`<br>We recommend using ${{ job.status }}|
 |job_name|required|Means slack notification title|
 |channel|required|Mattermost channel name|
-|icon_emoji|optional|Mattermost icon<br>default: github|
+|icon_emoji|optional|Mattermost icon<br>default: octocat|
 |username|optional|Mattermost username<br>default: Github Actions|
 |url|optional|Mattermost Incoming Webhooks URL<br>Please specify this key or SLACK_WEBHOOK environment variable<br>※SLACK_WEBHOOK will be deprecated|
 
