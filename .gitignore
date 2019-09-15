@@ -1,4 +1,5 @@
 .node_repl_history
 .config/
 .npm/
+.DS_Store
 node_modules

@@ -51,7 +51,9 @@ export class Slack extends IncomingWebhook {
    */
   protected generatePayload(
     status: Status,
-    msg: string
+    msg: string,
+    username: string,
+    icon_emoji: string
   ): IncomingWebhookSendArguments {
     const text: string = `${Slack.mark[status]} GitHub Actions ${Slack.msg[status]}`;
     const attachments: Object = {
@@ -61,6 +63,8 @@ export class Slack extends IncomingWebhook {
     };
     const payload: IncomingWebhookSendArguments = {
       text,
+      username,
+      icon_emoji,
       attachments: [attachments]
     };
 
@@ -74,12 +78,16 @@ export class Slack extends IncomingWebhook {
    */
   public async notify(
     status: Status,
-    msg: string
+    msg: string,
+    username: string,
+    icon_emoji: string
   ): Promise<IncomingWebhookResult> {
     try {
       const payload: IncomingWebhookSendArguments = this.generatePayload(
         status,
-        msg
+        msg,
+        username,
+        icon_emoji
       );
       const result = await this.send(payload);
 
