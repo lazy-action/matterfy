@@ -29,8 +29,8 @@ export class Slack extends IncomingWebhook {
     const context = github.context;
     const {sha, eventName, workflow, ref} = context;
     const {owner, repo} = context.repo;
-    const repo_url: string = `https://github.com/${owner}/${repo}`;
-    const action_url: string = `${repo_url}/commit/${sha}/checks`;
+    const repo_url: string = `https://git.daimler.com/${owner}/${repo}`;
+    const action_url: string = `${repo_url}/actions`;
 
     const fields: Array<Object> = [
       {
