@@ -1,6 +1,6 @@
 name: 'Matterfy'
 description: 'Mattermost Notification for Github Actions'
-author: 'tferreira'
+author: 'lazy-action'
 inputs:
   type:
     description: 'job status (success or failure)'
